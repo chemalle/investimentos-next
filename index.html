@@ -1,106 +1,102 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comparação de Investimentos - Next</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Comparativo de Investimentos | Nexthinking</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; padding: 20px; }
-        .container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1); }
-        img { max-width: 150px; display: block; margin: auto; }
-        canvas { max-width: 90%; margin: 20px auto; }
-        h2 { color: #333; }
-        p { font-size: 16px; color: #555; text-align: justify; }
+        body {
+            background: linear-gradient(to right, #e3f2fd, #bbdefb);
+            color: #0d47a1;
+            font-family: Arial, sans-serif;
+        }
+        .overlay {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            max-width: 180px;
+            margin-bottom: 20px;
+        }
+        .cta-button {
+            background: #1976d2;
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .cta-button:hover {
+            background: #0d47a1;
+        }
+        .table-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .table-dark {
+            color: #0d47a1;
+        }
+        .negative {
+            color: red;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="https://cdn.filestackcontent.com/7UUB9HaqTLmWQPySxadg" alt="Logo Next">
-        <h1>Comparação de Investimentos no Mercado Imobiliário</h1>
-        <p>
-            Muitas pessoas acreditam que a valorização dos imóveis sempre traz ganhos para os investidores. No entanto, é essencial 
-            considerar fatores como inflação, taxa de juros e retorno de investimentos alternativos. Vamos analisar com dados reais.
-        </p>
-        
-        <h2>Comparação entre Valorização de Imóveis e Inflação</h2>
-        <canvas id="graficoImoveis"></canvas>
-        <p>
-            Como podemos ver, a valorização dos imóveis não tem superado a inflação nos últimos anos. Isso significa que, mesmo que os preços aumentem, 
-            o poder de compra do investidor continua sendo afetado pela alta da inflação.
-        </p>
-        
-        <h2>Retorno de Investimentos vs Taxa de Juros</h2>
-        <canvas id="graficoInvestimentos"></canvas>
-        <p>
-            A taxa de juros no Brasil está elevada, tornando alternativas como CDI e FIIs mais rentáveis e líquidas em comparação aos imóveis. 
-            Enquanto um imóvel pode sofrer com baixa liquidez e altos custos, outros investimentos oferecem retornos mais previsíveis e eficientes.
-        </p>
-    </div>
+    <div class="container text-center mt-5">
+        <div class="overlay p-5">
+            <img src="https://cdn.filestackcontent.com/7UUB9HaqTLmWQPySxadg" class="logo" alt="Nexthinking Logo">
+            <h1>📊 Comparativo de Investimentos - Últimos 3 Meses</h1>
+            <p><strong>Nota:</strong> As rentabilidades apresentadas refletem o desempenho acumulado em <strong>3 meses</strong>, e não apenas um único mês.</p>
+            <p><strong>Importante:</strong> A valorização informada na tabela para os imóveis representa exclusivamente os únicos 7 bairros que se valorizaram acima da inflação no período de 12 meses. Mais de 95% dos bairros tiveram valorização inferior à inflação e, por isso, foram excluídos do cálculo, focando apenas onde existe retorno real.</p>
 
-    <script>
-        const ctx1 = document.getElementById('graficoImoveis').getContext('2d');
-        new Chart(ctx1, {
-            type: 'line',
-            data: {
-                labels: ['2022', '2023', '2024'],
-                datasets: [
-                    {
-                        label: 'Valorização Imóveis (%)',
-                        data: [6, 8, 7],
-                        borderColor: 'blue',
-                        fill: false,
-                        tension: 0.1
-                    },
-                    {
-                        label: 'Inflação (%)',
-                        data: [10, 9, 8],
-                        borderColor: 'red',
-                        fill: false,
-                        tension: 0.1
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                plugins: { legend: { position: 'top' } }
-            }
-        });
-        
-        const ctx2 = document.getElementById('graficoInvestimentos').getContext('2d');
-        new Chart(ctx2, {
-            type: 'line',
-            data: {
-                labels: ['2022', '2023', '2024'],
-                datasets: [
-                    {
-                        label: 'Taxa de Juros (%)',
-                        data: [13.75, 12.50, 11.25],
-                        borderColor: 'purple',
-                        fill: false,
-                        tension: 0.1
-                    },
-                    {
-                        label: 'CDI (%)',
-                        data: [13, 12, 10],
-                        borderColor: 'green',
-                        fill: false,
-                        tension: 0.1
-                    },
-                    {
-                        label: 'Rentabilidade FIIs (%)',
-                        data: [8, 8.5, 7.5],
-                        borderColor: 'orange',
-                        fill: false,
-                        tension: 0.1
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                plugins: { legend: { position: 'top' } }
-            }
-        });
-    </script>
-</body>
-</html>
+            <div class="table-container">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Investimento</th><th>Acumulado 3 Meses (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Ibovespa</td><td>4,37</td></tr>
+                        <tr><td>Nasdaq</td><td class="negative">-11,99</td></tr>
+                        <tr><td>Ouro</td><td>8,23</td></tr>
+                        <tr><td>Bitcoin</td><td class="negative">-20,08</td></tr>
+                        <tr><td>CDI</td><td>2,41</td></tr>
+                        <tr><td>Imóveis Novos SP</td><td>1,68</td></tr>
+                        <tr><td>Imóveis Usados SP</td><td>0,89</td></tr>
+                        <tr><td>Trump Trade *</td><td>9,34</td></tr>
+                        <tr><td>USD540 *</td><td>10,90</td></tr>
+                        <tr><td>VC Agro *</td><td>5,90</td></tr>
+                        <tr><td>VC Varejo *</td><td>9,27</td></tr>
+                        <tr><td>Dólar</td><td class="negative">-4,08</td></tr>
+                        <tr><td>Crédito Privado</td><td>2,85</td></tr>
+                        <tr><td>LCI/LCA</td><td>3,33</td></tr>
+                        <tr><td>Fundos Imobiliários (IFIX)</td><td>3,03</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>🏡 Bairros que superaram a inflação:</h3>
+            <p>Os únicos bairros que apresentaram valorização superior à inflação no período de 12 meses foram:</p>
+            <ul>
+                <li>Piqueri</li>
+                <li>Cidade São Francisco</li>
+                <li>Água Fria</li>
+                <li>Bosque da Saúde</li>
+                <li>Sapopemba</li>
+                <li>Pinheiros</li>
+                <li>Vila Mariana</li>
+            </ul>
+
+            <h3>📌 Importante sobre Liquidez, Rentabilidade e Custos:</h3>
+            <p>Investimentos de menor liquidez podem sofrer perda de rentabilidade devido ao impacto da inflação ao longo do tempo. Imóveis usados, que levam cerca de 2 anos para serem vendidos, tiveram sua valorização ajustada para refletir essa realidade. Da mesma forma, imóveis novos, que possuem liquidez superior e levam cerca de 9 meses para serem vendidos, apresentam melhor desempenho ajustado.</p>
+            <p>Além disso, os custos do segmento de construção civil, medidos pelo INCC, impactam diretamente na rentabilidade real dos investimentos imobiliários. Portanto, é essencial considerar esses fatores ao avaliar o desempenho desses ativos.</p>
+            <p
+::contentReference[oaicite:14]{index=14}
+ 
